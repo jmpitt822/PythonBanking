@@ -31,7 +31,7 @@ def withdraw():
             if withdrawAmt >= 0 and prevBal >= withdrawAmt:
                 userList[name] -= withdrawAmt
             else:
-                print("Error: Insufficient Funds")
+                print("Error: insufficient Funds")
             break
 
 def deposit():
