@@ -17,8 +17,7 @@ def chooseAction():
         print("Invalid input")
 
 def checkBalance():
-    balance = userList[name]
-    print("Your balance is $" + str(balance))
+    print("Your balance is $" + str(userList[name]))
 
 def withdraw():
     while True:
@@ -30,7 +29,7 @@ def withdraw():
         else:
             prevBal = userList[name]
             if withdrawAmt >= 0 and prevBal >= withdrawAmt:
-                userList[name] = prevBal - withdrawAmt
+                userList[name] -= withdrawAmt
             else:
                 print("Error: Insufficient Funds")
             break
@@ -45,9 +44,9 @@ def deposit():
         else:
             prevBal = userList[name]
             if depositAmt >= 0:
-                userList[name] = prevBal + depositAmt
+                userList[name] += depositAmt
             else:
-                print("Error: Cannon deposit a negative number.")
+                print("Error: Cannot deposit a negative number.")
             break
 
 def deleteAccount():
