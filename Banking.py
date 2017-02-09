@@ -21,22 +21,40 @@ def checkBalance():
     print("Your balance is $" + str(balance))
 
 def withdraw():
-    withdrawAmt = input("How much would you like to withdraw?\n")
-    prevBal = userList[name]
-    if prevBal >= float(withdrawAmt):
-        userList[name] = prevBal - float(withdrawAmt)
-    else:
-        print("Error: Insufficient Funds")
+    while True:
+        try:
+            withdrawAmt = float(input("How much would you like to withdraw?\n"))
+        except ValueError:
+            print("Please enter a valid number.")
+            continue
+        else:
+            prevBal = userList[name]
+            if withdrawAmt >= 0 and prevBal >= withdrawAmt:
+                userList[name] = prevBal - withdrawAmt
+            else:
+                print("Error: Insufficient Funds")
+            break
 
 def deposit():
-    depositAmt = input("How much would you like to deposit?\n")
-    prevBal = userList[name]
-    userList[name] = prevBal + float(depositAmt)
+    while True:
+        try:
+            depositAmt = float(input("How much would you like to deposit?\n"))
+        except ValueError:
+            print("Please enter a valid number.")
+            continue
+        else:
+            prevBal = userList[name]
+            if depositAmt >= 0:
+                userList[name] = prevBal + depositAmt
+            else:
+                print("Error: Cannon deposit a negative number.")
+            break
 
 def deleteAccount():
     delChoice = input("Are you sure you want to delete your account? [y/n]\n")
     if delChoice == "y":
         del(userList[name])
+        login()
 
 def cancel():
     login()
@@ -47,8 +65,15 @@ def login():
     if name in userList:
         print("Welcome back,", name)
     else:
-        newBal = float(input("Thank you for creating an account. How much would you like to deposit?\n"))
-        userList[name] = newBal
+        while True:
+            try:
+                newBal = float(input("Thank you for creating an account. How much would you like to deposit?\n"))
+            except ValueError:
+                print("Please enter a valid number.")
+                continue
+            else:
+                userList[name] = newBal
+                break
 
 
 userList = {"Jeremy": 100.00, "John": 117.00, "Linda": 58.00}
